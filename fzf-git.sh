@@ -190,6 +190,7 @@ _fzf_git_files() {
   (git -c color.status=$(__fzf_git_color) status --short --no-branch
    git ls-files "$root" | grep -vxFf <(git status -s | grep '^[^?]' | cut -c4-; echo :) | sed 's/^/   /') |
   _fzf_git_fzf -m --ansi --nth 2..,.. \
+    --scheme=path \
     --border-label '📁 Files ' \
     --header 'CTRL-O (open in browser) ╱ ALT-E (open in editor)' \
     --bind "ctrl-o:execute-silent:bash \"$__fzf_git\" --list file {-1}" \
